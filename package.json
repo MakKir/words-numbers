@@ -1,7 +1,8 @@
 {
   "name": "words-numbers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
+  "homepage": "https://github.com/MakKir/words-numbers.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

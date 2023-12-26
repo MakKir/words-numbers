@@ -25,7 +25,7 @@ const findNumberByWord = (numbersMap, word) => {
   return +number
 }
 
-const getCountCase = (count, words, withCount = false) => {
+export const getCountCase = (count, words, withCount = false) => {
   const value = Math.abs(count) % 100
   const num = value % 10
   let returnValue = words[2]
@@ -42,7 +42,7 @@ const getCountCase = (count, words, withCount = false) => {
   return withCount ? `${count} ${returnValue}` : returnValue
 }
 
-const wordsToNumber = (words) => {
+export const wordsToNumber = (words) => {
   if (typeof words !== 'string') {
     return undefined
   }
@@ -73,7 +73,7 @@ const wordsToNumber = (words) => {
   return words.startsWith(negativePrefix) ? -number : number
 }
 
-const numberToWords = (intNumber) => {
+export const numberToWords = (intNumber) => {
   let wordNumber = ''
   let number = intNumber
 
