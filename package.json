@@ -1,14 +1,20 @@
 {
   "name": "words-numbers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "homepage": "https://github.com/MakKir/words-numbers.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
 }

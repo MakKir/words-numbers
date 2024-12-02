@@ -10,14 +10,14 @@ const sortedDescNumbers = Object.keys(addNumbersMap)
   .map((it) => Number(it))
   .sort((a, b) => b - a)
 
-const findNumberByWord = (numbersMap, word) => {
+const findNumberByWord = (numbersMap: Record<number, string[]>, word: string): number => {
   let number = 0
 
   for (const key of Object.keys(numbersMap)) {
-    const words = numbersMap[key]
+    const words = numbersMap[+key]
 
     if (words.includes(word)) {
-      number = key
+      number = +key
       break
     }
   }
@@ -25,7 +25,7 @@ const findNumberByWord = (numbersMap, word) => {
   return +number
 }
 
-export const getCountCase = (count, words, withCount = false) => {
+export const getCountCase = (count: number, words: string[], withCount = false): string => {
   const value = Math.abs(count) % 100
   const num = value % 10
   let returnValue = words[2]
@@ -42,12 +42,12 @@ export const getCountCase = (count, words, withCount = false) => {
   return withCount ? `${count} ${returnValue}` : returnValue
 }
 
-export const wordsToNumber = (words) => {
+export const wordsToNumber = (words: string): number | undefined => {
   if (typeof words !== 'string') {
     return undefined
   }
 
-  const wordsArr = words.split(/\s+/)
+  const wordsArr: string[] = words.split(/\s+/)
 
   let number = 0
   for (const [index, wordNum] of wordsArr.entries()) {
@@ -64,7 +64,7 @@ export const wordsToNumber = (words) => {
         }
         number *= multiplyNum
 
-        number += wordsToNumber(wordsArr.slice(index + 1).join(' '))
+        number += wordsToNumber(wordsArr.slice(index + 1).join(' ')) as number
         break
       }
     }
@@ -73,7 +73,7 @@ export const wordsToNumber = (words) => {
   return words.startsWith(negativePrefix) ? -number : number
 }
 
-export const numberToWords = (intNumber) => {
+export const numberToWords = (intNumber: number) => {
   let wordNumber = ''
   let number = intNumber
 
@@ -88,7 +88,6 @@ export const numberToWords = (intNumber) => {
   for (const num of sortedDescNumbers) {
     const addNum = addNumbersMap[num]
     const multiplyNum = multiplyNumbersMap[num]
-
     const closestNum = addNum?.[0] || multiplyNum?.[0]
 
     if (number === num) {
@@ -110,21 +109,22 @@ export const numberToWords = (intNumber) => {
         const remainder = number / num
         const intRemainder = Math.trunc(remainder)
         const stringRemainder = intRemainder.toString()
-        const endsWithOne = stringRemainder.endsWith(1)
-        const endsWithTwo = stringRemainder.endsWith(2)
+        const endsWithOne = stringRemainder.endsWith('1')
+        const endsWithTwo = stringRemainder.endsWith('2')
 
         // Для чисел с подстрокой типа "одна тысяча" или "две тысячи" нужно особое согласование
         if (num === 1e3 && (endsWithOne || endsWithTwo)) {
           wordNumber += numberToWords(intRemainder)
 
-          const endWord = wordNumber.substring(wordNumber.lastIndexOf(' ') + 1)
-
+          const endWord: string = wordNumber.substring(wordNumber.lastIndexOf(' ') + 1)
           if (thousandsSpecialEnds.includes(endWord)) {
             wordNumber = wordNumber.substring(0, wordNumber.lastIndexOf(' ') + 1)
+
 
             const mapIndex = endsWithOne ? 1 : 2
 
             wordNumber += addNumbersMap[mapIndex][1]
+
           }
         } else {
           wordNumber += numberToWords(intRemainder)

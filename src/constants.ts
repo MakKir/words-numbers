@@ -1,4 +1,4 @@
-export const addNumbersMap = {
+export const addNumbersMap: Record<number, string[]> = {
   0: ['ноль', 'нуль'],
   1: ['один', 'одна'],
   2: ['два', 'две'],
@@ -38,7 +38,7 @@ export const addNumbersMap = {
   900: ['девятьсот'],
 }
 
-export const multiplyNumbersMap = {
+export const multiplyNumbersMap: Record<number, string[]> = {
   1e3: ['тысяча', 'тысячи', 'тысяч'],
   1e6: ['миллион', 'миллиона', 'миллионов'],
   1e9: ['миллиард', 'миллиарда', 'миллиардов'],
@@ -52,5 +52,5 @@ export const multiplyNumbersMap = {
   1e33: ['дециллион', 'дециллиона', 'дециллионов'],
 }
 
-export const thousandsSpecialEnds = ['один', 'два']
+export const thousandsSpecialEnds: string[] = ['один', 'два']
 export const negativePrefix = 'минус'
